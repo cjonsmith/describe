@@ -31,6 +31,7 @@
 
 #requires   curl, jq
 
+source ~/.config/describe/appInfo
 
 app_id="APP_ID"
 app_key="APP_KEY"
@@ -71,7 +72,7 @@ for word in "${words[@]}"; do
 
     if [[ "$SYNONYMS" == YES ]]; then
 
-        curl -s -X GET -H "app_id: $app_id" -H "app_key: $app_key" "$base_url/entries/en/$word/synonyms"\
+        curl -s -X GET -H "app_id: $OXFORD_APP_ID" -H "app_key: $OXFORD_APP_KEY" "$base_url/entries/en/$word/synonyms"\
         | jq '.results[].lexicalEntries[].entries[].senses[].synonyms[].text' 2>/dev/null\
         | sed 's/\"//g'
 
@@ -83,7 +84,7 @@ for word in "${words[@]}"; do
 
     if [[ "$ANTONYMS" == YES ]]; then
 
-        curl -s -X GET -H "app_id: $app_id" -H "app_key: $app_key" "$base_url/entries/en/$word/antonyms"\
+        curl -s -X GET -H "app_id: $OXFORD_APP_ID" -H "app_key: $OXFORD_APP_KEY" "$base_url/entries/en/$word/antonyms"\
         | jq '.results[].lexicalEntries[].entries[].senses[].antonyms[].text' 2>/dev/null\
         | sed 's/\"//g'\
 
@@ -93,7 +94,7 @@ for word in "${words[@]}"; do
 
     # print definition
 
-    result=$(curl -s -X GET -H "app_id: $app_id" -H "app_key: $app_key" "$base_url/entries/en/$word")
+    result=$(curl -s -X GET -H "app_id: $OXFORD_APP_ID" -H "app_key: $OXFORD_APP_KEY" "$base_url/entries/en/$word")
 
     phoneticSpelling=$(echo $result\
     | jq '.results[].lexicalEntries[].pronunciations[].phoneticSpelling' 2>/dev/null\
