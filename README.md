@@ -10,23 +10,14 @@ a small shell script for quickly looking up a words meaning, synonyms or antonym
 
 In order to make the script work you first have to register a (free) developer account at [Oxford Dictionaries](https://developer.oxforddictionaries.com/) to obtain an APP ID and APP KEY.
 
-Now within the script replace the _APP_ID_ and _APP_KEY_ placeholders with your own app id and app key preserving the quotation marks, e.g.
-
-change
+This fork of the `describe` script will attempt to [source](https://superuser.com/a/46146) `~/.config/describe/appInfo` which needs to contain two variables:
 
 ```bash
-app_id="APP_ID"
-app_key="APP_KEY"
+OXFORD_APP_ID='<APP_ID>'
+OXFORD_APP_KEY='<APP_KEY>'
 ```
 
-to
-
-```bash
-app_id="12345"
-app_key="1234567890"
-```
-
-where _12345_ matches your app id and _1234567890_ your app key.
+where `'<APP_ID>'` matches your app id and `'<APP_KEY>'` matches your app key.
 
 Optionally, create a symlink to the script to a location contained in your PATH like _/usr/bin_ or _/usr/local/bin_ to make it conveniently executable from everywhere, e.g.
 
